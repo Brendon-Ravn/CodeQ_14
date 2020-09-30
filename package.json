@@ -1,11 +1,11 @@
 {
-  "name": "1-Passport-Example",
+  "name": "CodeQ_14",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "npm run lint",
-    "start": "node server.js",
+    "start": "node server",
     "lint": "eslint --quiet .",
     "fix": "eslint --fix .",
     "watch": "nodemon server.js"
