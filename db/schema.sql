@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS fourteenish;
+CREATE DATABASE fourteenish;
