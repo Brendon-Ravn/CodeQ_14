@@ -1,19 +1,6 @@
 const db = require("../models");
 
 module.exports = function(app) {
-  app.get("/api/posts", (req, res) => {
-    const query = {};
-    if (req.query.user_id) {
-      query.UserId = req.query.user_id;
-    }
-    db.Post.findAll({
-      where: query,
-      include: db.User
-    }).then(dbPost => {
-      res.json(dbPost);
-    });
-  });
-
   app.get("/api/posts/:category", (req, res) => {
     db.Post.findAll({
       where: {
