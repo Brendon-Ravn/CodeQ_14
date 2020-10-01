@@ -2,28 +2,31 @@ $(document).ready(() => {
   const questionInput = $("#js");
   const jsForm = $("#jsQuestions");
   const jsPosts = $(".jsPosts");
-  const newPost = {
-    question: questionInput.text().trim(),
-    category: "js"
-  };
+
+  let posts;
 
   $(jsForm).on("submit", handleFormSubmit);
 
   function handleFormSubmit(event) {
     event.preventDefault();
 
-    if (!questionInput.text().trim()) {
-      return;
+    if (questionInput.val().trim()) {
+      const newPost = {
+        question: questionInput.val().trim(),
+        category: "js"
+      };
+      submitPost(newPost);
     }
-    submitPost(newPost);
   }
 
   function submitPost(post) {
+    console.log(post);
     $.post("/api/posts", post, () => {
-      window.location.href = "/jsQuestions";
+      window.location.href = `/jsQuestions/${post.category}`;
     });
   }
-  function getPosts(category) {
+  function getPosts() {
+    const category = "";
     $.get("/api/posts/" + category, data => {
       console.log("Posts", data);
       posts = data;
@@ -56,6 +59,5 @@ $(document).ready(() => {
     newPostCard.data("post", post);
     return newPostCard;
   }
-
-  getPosts(newPost);
+  getPosts();
 });
