@@ -54,6 +54,17 @@ module.exports = function(app) {
     });
   });
 
+  app.post("/javascript/api/answers/:id", (req, res) => {
+    console.log(req.body.question);
+    db.Response.create({
+      PostId: req.params.id,
+      answer: req.body.answer,
+      category: "js"
+    }).then(result => {
+      res.json(result);
+    });
+  });
+
   //css Page
   app.get("/css", (req, res) => {
     siteCategory = "css";

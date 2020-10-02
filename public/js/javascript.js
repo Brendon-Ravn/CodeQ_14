@@ -14,4 +14,18 @@ $(".create-form").on("submit", event => {
     console.log("created new post: " + newPost);
     location.reload();
   });
+
+  const newAnswer = {
+    answer: $("#answer")
+      .val()
+      .trim()
+  };
+
+  $.ajax("/javascript/api/answers/" + $(this).data("id"), {
+    type: "POST",
+    data: newAnswer
+  }).then(() => {
+    console.log("created new post: " + newAnswer);
+    location.reload();
+  });
 });
