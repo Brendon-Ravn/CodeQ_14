@@ -14,6 +14,10 @@ $(".create-form").on("submit", event => {
     console.log("created new post: " + newPost);
     location.reload();
   });
+});
+
+$(".create-formA").on("submit", function(event) {
+  event.preventDefault();
 
   const newAnswer = {
     answer: $("#answer")
@@ -21,7 +25,7 @@ $(".create-form").on("submit", event => {
       .trim()
   };
 
-  $.ajax("/javascript/api/answers/" + $(this).data("id"), {
+  $.ajax("/javascript/api/responses/" + $(this).data("id"), {
     type: "POST",
     data: newAnswer
   }).then(() => {
