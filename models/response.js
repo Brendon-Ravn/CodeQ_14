@@ -1,17 +1,11 @@
+
 module.exports = function(sequelize, DataTypes) {
   var Response = sequelize.define("Response", {
     answer: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: { 
-        len: [1]
-      }
-    },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
+        len: [1, 160]
       }
     }
   });

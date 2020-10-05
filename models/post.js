@@ -20,7 +20,8 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
     Post.hasMany(models.Response, {
-      onDelete: "cascade"
+      onDelete: "cascade",
+      onUpdate: "cascade"
     });
   };
 

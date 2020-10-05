@@ -48,8 +48,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-body">
-                            <p>{{this.question}}</p>
-
+                            
                             <p>
                                 <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample{{id}}"
                                     role="button" aria-expanded="false" aria-controls="multiCollapseExample{{id}}">View
@@ -59,7 +58,11 @@
                                 <div class="col">
                                     <div class="collapse multi-collapse" id='multiCollapseExample{{id}}'>
                                         <div class="card card-body">
-                                            <form class="create-form" data-id="{{id}}">
+                                            {{#each responses}}
+                                            <p>{{this.answer}}</p>
+                                            {{/each}}
+                                            <form class="create-formA" data-id="{{id}}">
+                                                <p>{{this.question}}</p>
                                                 <div class="form-group">
                                                     <label for="post">Answer:</label>
                                                     <input type="text" id="answer" name="answer">

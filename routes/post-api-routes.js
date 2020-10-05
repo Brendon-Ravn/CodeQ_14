@@ -54,10 +54,10 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/javascript/api/answers/:id", (req, res) => {
-    console.log(req.body.question);
+  app.post("/javascript/api/responses/:id", (req, res) => {
+    console.log("id: ", req.params.id);
     db.Response.create({
-      PostId: req.params.id,
+      PostId: parseInt(req.params.id),
       answer: req.body.answer,
       category: "js"
     }).then(result => {
