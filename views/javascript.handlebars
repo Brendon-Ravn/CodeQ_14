@@ -16,10 +16,7 @@
                     Browse Code
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="html-questions.html">HTML</a>
-                    <a class="dropdown-item" href="css">CSS</a>
                     <a class="dropdown-item" href="javascript">JavaScript</a>
-                    <a class="dropdown-item" href="backend-questions.html">Back End</a>
                 </div>
             </li>
         </ul>
@@ -48,34 +45,50 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-body">
-                            
+                            <p>{{this.question}}</p>
+
                             <p>
                                 <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample{{id}}"
-                                    role="button" aria-expanded="false" aria-controls="multiCollapseExample{{id}}">View
-                                    More</a>
+                                    role="button" aria-expanded="false" aria-controls="multiCollapseExample{{id}}">Responses</a>
                             </p>
                             <div class="row">
                                 <div class="col">
                                     <div class="collapse multi-collapse" id='multiCollapseExample{{id}}'>
                                         <div class="card card-body">
-                                            {{#each responses}}
-                                            <p>{{this.answer}}</p>
-                                            {{/each}}
                                             <form class="create-formA" data-id="{{id}}">
-                                                <p>{{this.question}}</p>
+                                               
                                                 <div class="form-group">
-                                                    <label for="post">Answer:</label>
+                                                    <label for="post">New Reply:</label>
                                                     <input type="text" id="answer" name="answer">
                                                 </div>
                                                 <button type="submit">Add Reply</button>
                                             </form>
+                                            
                                         </div>
                                     </div>
+                                    {{#each Responses}}
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="collapse multi-collapse" id='multiCollapseExample{{id}}'>
+                                                            <div class="card card-body">
+                                                                <p>{{this.answer}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/each}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {{/each}}
+                </div>
+                {{/each}}
                 </div>
             </div>
         </div>

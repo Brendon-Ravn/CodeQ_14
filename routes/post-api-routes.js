@@ -2,33 +2,6 @@ const db = require("../models");
 // eslint-disable-next-line no-unused-vars
 let siteCategory;
 module.exports = function(app) {
-  /*
-  app.get("/api/posts/:category", (req, res) => {
-    db.Post.findAll({
-      where: {
-        category: req.params.category
-      },
-      include: db.User
-    }).then(dbPost => {
-      console.log(dbPost);
-      res.json(dbPost);
-    });
-  });
-*/
-  /*
-    app.get("/api/posts/:id", (req, res) => {
-      db.Post.findOne({
-        where: {
-          id: req.params.id
-        },
-        include: db.User
-      }).then(dbPost => {
-        console.log(dbPost);
-        res.json(dbPost);
-      });
-    });
-  */
-
   // Javascript page
   app.get("/javascript", (req, res) => {
     siteCategory = "js";
@@ -36,10 +9,11 @@ module.exports = function(app) {
       where: {
         category: "js"
       },
-      include: db.User,
+      include: [db.User, db.Response],
       order: [["id", "DESC"]]
     }).then(dbResponse => {
       const posts = JSON.parse(JSON.stringify(dbResponse));
+      console.log(posts);
       res.render("javascript", { posts });
     });
   });
