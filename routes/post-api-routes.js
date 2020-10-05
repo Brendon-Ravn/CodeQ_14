@@ -46,11 +46,12 @@ module.exports = function(app) {
       where: {
         category: "css"
       },
-      include: db.User,
+      include: [db.User, db.Response],
       order: [["id", "DESC"]]
     }).then(dbResponse => {
       const posts = JSON.parse(JSON.stringify(dbResponse));
-      res.render("css", { posts });
+      console.log(posts);
+      res.render("javascript", { posts });
     });
   });
 
@@ -59,6 +60,54 @@ module.exports = function(app) {
     db.Post.create({
       question: req.body.question,
       category: siteCategory
+    }).then(result => {
+      res.json(result);
+    });
+  });
+
+  app.post("/css/api/responses/:id", (req, res) => {
+    console.log("id: ", req.params.id);
+    db.Response.create({
+      PostId: parseInt(req.params.id),
+      answer: req.body.answer,
+      category: "css"
+    }).then(result => {
+      res.json(result);
+    });
+  });
+
+  //html Page
+  app.get("/html", (req, res) => {
+    siteCategory = "html";
+    db.Post.findAll({
+      where: {
+        category: "html"
+      },
+      include: [db.User, db.Response],
+      order: [["id", "DESC"]]
+    }).then(dbResponse => {
+      const posts = JSON.parse(JSON.stringify(dbResponse));
+      console.log(posts);
+      res.render("html", { posts });
+    });
+  });
+
+  app.post("/html/api/posts", (req, res) => {
+    console.log(req.body.question);
+    db.Post.create({
+      question: req.body.question,
+      category: siteCategory
+    }).then(result => {
+      res.json(result);
+    });
+  });
+
+  app.post("/html/api/responses/:id", (req, res) => {
+    console.log("id: ", req.params.id);
+    db.Response.create({
+      PostId: parseInt(req.params.id),
+      answer: req.body.answer,
+      category: "css"
     }).then(result => {
       res.json(result);
     });
